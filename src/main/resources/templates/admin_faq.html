@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - FAQ 관리</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f8;
+        }
+
+        header {
+            background-color: #1f2937;
+            color: #fff;
+            padding: 16px 24px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 24px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #d1d5db;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            background: #fff;
+            border-collapse: collapse;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        th, td {
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f1f5f9;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    AI FAQ Assistant · FAQ 관리자
+</header>
+
+<div class="container">
+
+    <form method="post" action="/admin/faq">
+        <input type="text" name="question" placeholder="FAQ 질문" required />
+        <textarea name="answer" placeholder="FAQ 답변" rows="4" required></textarea>
+        <button type="submit">FAQ 추가</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>질문</th>
+            <th>답변</th>
+        </tr>
+        <tr th:each="faq : ${faqs}">
+            <td th:text="${faq.id}"></td>
+            <td th:text="${faq.question}"></td>
+            <td th:text="${faq.answer}"></td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
